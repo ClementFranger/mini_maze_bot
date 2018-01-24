@@ -27,7 +27,7 @@ class Maze:
         #             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
         #             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
         #             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]])
-        self.display = pygame.display.set_mode((self.width*self.cell_size, self.height*self.cell_size),0,32)
+        self.display = pygame.display.set_mode((self.width*self.cell_size, self.height*self.cell_size))
 
     def color_cell(self, y, x):
         color = None
@@ -89,16 +89,25 @@ class Maze:
         current_cell = (0, 0)
         visited.append(current_cell)
         self.change_cell(current_cell[0], current_cell[1], 0)
+
         while visited:
-            # time.sleep(0.1)
+            time.sleep(0.1)
             neighbors = self.unvisited_cell_neighbors(current_cell[0], current_cell[1])
             if neighbors:
                 next_cell = random.choice(neighbors)
-                self.change_cell(next_cell[0][0],next_cell[0][1], 0)
-                self.change_cell(next_cell[1][0],next_cell[1][1], 0)
-                visited.append(next_cell[1])
+                self.change_cell(next_cell[0][0], next_cell[0][1], 0)
+                self.change_cell(next_cell[1][0], next_cell[1][1], 0)
+                visited.extend([next_cell[0], next_cell[1]])
                 current_cell = next_cell[1]
             else:
-                current_cell = visited[-1]
-                del visited[-1]
+                if len(visited) > 1:
+                    self.change_cell(visited[-1][0], visited[-1][1], 0.5)
+                    del visited[-1]
+                    self.change_cell(visited[-1][0], visited[-1][1], 0.5)
+                    del visited[-1]
+                    current_cell = visited[-1]
+                else:
+                    self.change_cell(visited[-1][0], visited[-1][1], 0.5)
+                    current_cell = visited[-1]
+                    del visited[-1]
             pygame.display.update()
