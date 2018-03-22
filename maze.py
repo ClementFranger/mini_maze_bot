@@ -3,13 +3,14 @@ import pygame
 import random
 import time
 
-## 0 is free cells, 1 is wall cells and 0.5 is visited cells
+
+# 0 is free cells, 1 is wall cells and 0.5 is visited cells
 class Maze:
-    ## width and height are in cells while cell_size is in pixel.
-    def __init__(self, width = 100, height = 50, cell_size = 10,
-                free_cell_color = (255, 255, 255),
-                visited_cell_color = (0, 0, 255),
-                wall_cell_color = (0, 0, 0)):
+    # width and height are in cells while cell_size is in pixel.
+    def __init__(self, width=100, height=50, cell_size=10,
+                 free_cell_color=(255, 255, 255),
+                 visited_cell_color=(0, 0, 255),
+                 wall_cell_color=(0, 0, 0)):
         self.width = width
         self.height = height
         self.cell_size = cell_size
@@ -17,17 +18,7 @@ class Maze:
         self.visited_cell_color = visited_cell_color
         self.wall_cell_color = wall_cell_color
         self.cells = numpy.ones((self.height, self.width))
-        # self.cells = numpy.matrix([[1, 1, 0, 1, 1, 1, 1, 1, 1, 1],
-        #             [1, 1, 0, 1, 1, 1, 1, 1, 1, 1],
-        #             [1, 1, 0, 1, 1, 1, 1, 1, 1, 1],
-        #             [1, 1, 0, 1, 1, 1, 1, 0.5, 0.5, 0.5],
-        #             [1, 1, 0, 1, 1, 1, 1, 0, 1, 1],
-        #             [1, 1, 0, 1, 1, 1, 1, 0, 1, 1],
-        #             [1, 1, 0, 0, 0, 0, 0, 0, 1, 1],
-        #             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        #             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        #             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]])
-        self.display = pygame.display.set_mode((self.width*self.cell_size, self.height*self.cell_size))
+        self.display = pygame.display.set_mode((self.width * self.cell_size, self.height * self.cell_size))
 
     def color_cell(self, y, x):
         color = None
@@ -39,19 +30,19 @@ class Maze:
             color = self.wall_cell_color
         return color
 
-    ## x is the matrix column index
-    ## y is the matrix row index
-    ## pygame draw x from left to right and y from top to bottom
-    ## so matrix index are (y, x)
+    # x is the matrix column index
+    # y is the matrix row index
+    # pygame draw x from left to right and y from top to bottom
+    # so matrix index are (y, x)
     def draw_cell(self, y, x):
         pygame.draw.rect(self.display,
-                        self.color_cell(y, x),
-                        ((x*self.cell_size, y*self.cell_size), (self.cell_size, self.cell_size)))
+                         self.color_cell(y, x),
+                         ((x * self.cell_size, y * self.cell_size), (self.cell_size, self.cell_size)))
 
-    ## x is the matrix column index
-    ## y is the matrix row index
-    ## pygame draw x from left to right and y from top to bottom
-    ## so matrix index are (y, x)
+    # x is the matrix column index
+    # y is the matrix row index
+    # pygame draw x from left to right and y from top to bottom
+    # so matrix index are (y, x)
     def change_cell(self, y, x, value):
         self.cells[y, x] = value
         self.draw_cell(y, x)
@@ -60,9 +51,9 @@ class Maze:
         for cell in numpy.ndindex(self.height, self.width):
             self.draw_cell(cell[0], cell[1])
 
-#################################################################################################################
-###############################################  DFS GENERATION  ################################################
-#################################################################################################################
+    #################################################################################################################
+    ###############################################  DFS GENERATION  ################################################
+    #################################################################################################################
 
     def unvisited_cell_neighbors(self, y, x):
         neighbors = []
@@ -82,8 +73,8 @@ class Maze:
         neighbors = [x for x in neighbors if x != []]
         return neighbors
 
-    ## If wall is a cell, then do step of 2
-    ## Credit to https://github.com/The-Ofek-Foundation/Maze
+    # If wall is a cell, then do step of 2
+    # Credit to https://github.com/The-Ofek-Foundation/Maze
     def dfs(self):
         visited = []
         current_cell = (0, 0)
