@@ -1,6 +1,6 @@
 # MiniGameBot
 
-![alt text](maze_sample.png)
+![alt text](media/maze_sample.png)
 
 # Description
 DFS Maze Generation that will eventually lead to a machine learning bot maze solver.
