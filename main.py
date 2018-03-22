@@ -5,7 +5,7 @@ import os
 
 if __name__ == "__main__" :
     os.environ['SDL_VIDEO_CENTERED'] = '1'
-    ## To have a borderles maze, chose an odd width and height
+    # To have a borderles maze, chose an odd width and height
     maze = maze.Maze(31, 15, 20)
     # maze = maze.Maze(250, 125, 5)
 
@@ -16,6 +16,6 @@ if __name__ == "__main__" :
 
     while True:
         for event in pygame.event.get():
-            if event.type==pygame.QUIT:
+            if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
