@@ -7,7 +7,7 @@ import time
 if __name__ == "__main__" :
     os.environ['SDL_VIDEO_CENTERED'] = '1'
 
-    ## To have a borderles maze, chose an odd width and height
+    ## To have a borderless maze, chose an odd width and height
     # maze = maze.Maze(31, 15, 20)
     maze = maze.Maze(199, 99, 5)
 
