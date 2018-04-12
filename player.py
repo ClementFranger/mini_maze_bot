@@ -1,6 +1,7 @@
 import pygame
 
-## WIP
+
+# WIP
 class Player:
     # def __init__(self, image, x, y, speed):
     #     self.image = image
@@ -22,6 +23,7 @@ class Player:
 
     def moveDown(self):
         self.y = self.y + self.speed
+
 
 class App:
 

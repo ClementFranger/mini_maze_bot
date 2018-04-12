@@ -4,9 +4,9 @@ import random
 import time
 
 
-## 0 is free cells, 1 is wall cells and 0.5 is visited cells
+# 0 is free cells, 1 is wall cells and 0.5 is visited cells
 class Maze:
-    ## width and height are in cells while cell_size is in pixel.
+    # width and height are in cells while cell_size is in pixel.
     def __init__(self, width=100, height=50, cell_size=10,
                  free_cell_color=(255, 255, 255),
                  visited_cell_color=(0, 0, 255),
@@ -30,10 +30,10 @@ class Maze:
             color = self.wall_cell_color
         return color
 
-    ## x is the matrix column index
-    ## y is the matrix row index
-    ## so matrix index are cell = (y, x)
-    ## pygame draw x from left to right and y from top to bottom
+    # x is the matrix column index
+    # y is the matrix row index
+    # so matrix index are cell = (y, x)
+    # pygame draw x from left to right and y from top to bottom
     def draw_cell(self, cell):
         pygame.draw.rect(self.display,
                          self.color_cell(cell),
@@ -52,7 +52,7 @@ class Maze:
         self.draw_maze()
 
     #################################################################################################################
-    ###############################################  DFS GENERATION  ################################################
+    #                                               DFS GENERATION                                                  #
     #################################################################################################################
 
     def unvisited_cell_neighbors(self, cell):
@@ -73,8 +73,8 @@ class Maze:
         neighbors = [x for x in neighbors if x != []]
         return neighbors
 
-    ## If wall is a cell, then do step of 2
-    ## Credit to https://github.com/The-Ofek-Foundation/Maze
+    # If wall is a cell, then do step of 2
+    # Credit to https://github.com/The-Ofek-Foundation/Maze
     def dfs(self):
         visited = []
         current_cell = (0, 0)
@@ -100,6 +100,6 @@ class Maze:
                     self.change_cell(visited[-1], 0.5)
                     current_cell = visited[-1]
                     del visited[-1]
-            ## Uncomment to see real time progression
+            # Uncomment to see real time progression
             # time.sleep(0.1)
             # pygame.display.update()
